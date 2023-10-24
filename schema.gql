@@ -2,6 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type IVideoDetails {
+  name: String!
+  thumbnailLink: String!
+  totalViews: String!
+  author: String!
+  duration: String!
+}
+
 type Query {
   healthCheck: String!
+  getVideoDetails(getVideoDetailsDto: getVideoDetailsDTO!): IVideoDetails!
+  downloadVideo(downloadVideoDto: downloadVideoDTO!): Boolean!
+}
+
+input getVideoDetailsDTO {
+  videoId: String!
+}
+
+input downloadVideoDTO {
+  videoId: String!
 }

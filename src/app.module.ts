@@ -3,6 +3,8 @@ import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { YoutubeModule } from './youtube/youtube.module';
+import { FfmpegModule } from './ffmpeg/ffmpeg.module';
 
 @Module({
   imports: [
@@ -10,6 +12,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
     }),
+    YoutubeModule,
+    FfmpegModule,
   ],
   providers: [AppResolver, AppService],
 })
