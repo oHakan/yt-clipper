@@ -15,7 +15,7 @@ export class FfmpegService {
 
   async cropVideo(videoId: string, startTime: number, duration: number) {
     return new Promise((resolve) => {
-      const command = `ffmpeg -ss ${startTime} -i ${videoId}_output.mp4 -t ${duration} -c:v copy -c:a copy ${videoId}_trim.mp4`;
+      const command = `ffmpeg -ss ${startTime} -i ${videoId}_output.mp4 -to ${duration} -c:v libx264 -c:a aac -crf 18  ${videoId}_trim.mp4`;
       const executed = chd.exec(command);
 
       executed.on('error', () => resolve(false));
