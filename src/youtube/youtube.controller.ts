@@ -12,7 +12,13 @@ export class YoutubeController {
       let base64string = '';
 
       file.on('data', (data) => (base64string += data));
-      file.on('end', () => resolve(base64string));
+      file.on('end', () => {
+        fs.unlinkSync(id + '.mp4');
+        fs.unlinkSync(id + '.mp3');
+        fs.unlinkSync(id + '_output.mp4');
+        fs.unlinkSync(id + '_trim.mp4');
+        resolve(base64string);
+      });
     });
   }
 }
