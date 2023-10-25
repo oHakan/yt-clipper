@@ -54,11 +54,22 @@ export class YoutubeResolver {
       }
 
       const mergedVideo = await this.ffmpegService.mergeAudioAndVideo(
-        downloadVideoDto.videoId + '.mp4',
-        downloadVideoDto.videoId + '.mp3',
+        downloadVideoDto.videoId,
       );
 
-      console.log(mergedVideo);
+      if (!mergedVideo) {
+        throw new BadRequestException('Video Merge Error!');
+      }
+
+      const trimVideo = await this.ffmpegService.cropVideo(
+        downloadVideoDto.videoId,
+        downloadVideoDto.startTime,
+        downloadVideoDto.duration,
+      );
+
+      if (!trimVideo) {
+        throw new BadRequestException('Video Trim Error!');
+      }
 
       return true;
     } catch (error) {

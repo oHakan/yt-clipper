@@ -22,4 +22,6 @@ input getVideoDetailsDTO {
 
 input downloadVideoDTO {
   videoId: String!
+  startTime: Float!
+  duration: Float!
 }
