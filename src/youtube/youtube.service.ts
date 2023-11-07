@@ -28,7 +28,7 @@ export class YoutubeService {
   async downloadVideo(videoId: string): Promise<boolean> {
     return new Promise((resolve) => {
       const file = fs.createWriteStream(videoId + '.mp4');
-      const pipe = ytdl(videoId, { quality: 248 }).pipe(file);
+      const pipe = ytdl(videoId, { quality: 'highestvideo' }).pipe(file);
 
       pipe.on('error', () => resolve(false));
       pipe.on('finish', () => resolve(true));
@@ -38,7 +38,7 @@ export class YoutubeService {
   async downloadAudio(videoId: string): Promise<boolean> {
     return new Promise((resolve) => {
       const file = fs.createWriteStream(videoId + '.mp3');
-      const pipe = ytdl(videoId, { quality: 140 }).pipe(file);
+      const pipe = ytdl(videoId, { quality: 'highestaudio' }).pipe(file);
 
       pipe.on('error', () => resolve(false));
       pipe.on('finish', () => resolve(true));

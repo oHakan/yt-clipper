@@ -3,14 +3,10 @@ import { YoutubeService } from './youtube.service';
 import { getVideoDetailsDTO } from './dto/get-video-details.dto';
 import { BadRequestException } from '@nestjs/common';
 import { IVideoDetails } from './youtube.interface';
-import { FfmpegService } from 'src/ffmpeg/ffmpeg.service';
 
 @Resolver()
 export class YoutubeResolver {
-  constructor(
-    private youtubeService: YoutubeService,
-    private ffmpegService: FfmpegService,
-  ) {}
+  constructor(private youtubeService: YoutubeService) {}
 
   @Query(() => IVideoDetails)
   async getVideoDetails(
