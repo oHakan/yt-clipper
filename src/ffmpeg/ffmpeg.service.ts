@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as chd from 'child_process';
+import * as fs from 'fs';
 
 @Injectable()
 export class FfmpegService {
@@ -20,6 +21,24 @@ export class FfmpegService {
 
       executed.on('error', () => resolve(false));
       executed.on('close', () => resolve(true));
+    });
+  }
+
+  async convertToBase64(videoId: string) {
+    return new Promise((resolve) => {
+      const file = fs.createReadStream(videoId + '_trim.mp4', {
+        encoding: 'base64',
+      });
+      let base64string = '';
+
+      file.on('data', (data) => (base64string += data));
+      file.on('end', () => {
+        fs.unlinkSync(videoId + '.mp4');
+        fs.unlinkSync(videoId + '.mp3');
+        fs.unlinkSync(videoId + '_output.mp4');
+        fs.unlinkSync(videoId + '_trim.mp4');
+        resolve(base64string);
+      });
     });
   }
 }
