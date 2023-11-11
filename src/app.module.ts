@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { YoutubeModule } from './youtube/youtube.module';
 import { FfmpegModule } from './ffmpeg/ffmpeg.module';
+import { ClipperModule } from './clipper/clipper.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { FfmpegModule } from './ffmpeg/ffmpeg.module';
     }),
     YoutubeModule,
     FfmpegModule,
+    ClipperModule,
   ],
   providers: [AppResolver, AppService],
 })
