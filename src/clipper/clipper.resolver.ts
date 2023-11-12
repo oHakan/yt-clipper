@@ -14,6 +14,14 @@ export class ClipperResolver {
   @Query(() => String)
   async CreateClip(@Args('CreateClipDTO') createClipDto: CreateClipDTO) {
     try {
+      const ffmpegCheck = await this.ffmpegService.checkFfmpeg();
+
+      if (!ffmpegCheck) {
+        throw new BadRequestException(
+          'Ffmpeg error! Please contact with system developer',
+        );
+      }
+
       const videoDetails = await this.youtubeService.getVideoDetails(
         createClipDto.videoId,
       );
