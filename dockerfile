@@ -1,6 +1,9 @@
 # Base image
 FROM node:21.1.0
 
+# Install ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg
+
 # Create app directory
 WORKDIR /usr/src/app
 
