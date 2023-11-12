@@ -48,7 +48,7 @@ export class ClipperResolver {
         throw new BadRequestException('Video Trim Error!');
       }
 
-      const videoBase64 = this.ffmpegService.convertToBase64(
+      const videoBase64 = await this.ffmpegService.convertToBase64(
         createClipDto.videoId,
       );
 

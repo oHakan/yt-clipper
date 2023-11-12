@@ -13,14 +13,14 @@ type IVideoDetails {
 type Query {
   healthCheck: String!
   getVideoDetails(getVideoDetailsDto: getVideoDetailsDTO!): IVideoDetails!
-  downloadVideo(downloadVideoDto: downloadVideoDTO!): Boolean!
+  CreateClip(CreateClipDTO: CreateClipDTO!): String!
 }
 
 input getVideoDetailsDTO {
   videoId: String!
 }
 
-input downloadVideoDTO {
+input CreateClipDTO {
   videoId: String!
   startTime: Float!
   duration: Float!
