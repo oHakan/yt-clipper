@@ -9,13 +9,12 @@ export class YoutubeService {
     try {
       const details = await ytdl.getInfo(videoId);
 
-      console.log(details);
-
       return {
         name: details.videoDetails.title,
         author: details.videoDetails.author.user,
         thumbnailLink: details.videoDetails.thumbnails[0].url,
         totalViews: details.videoDetails.viewCount,
+        durationInt: parseInt(details.videoDetails.lengthSeconds),
         duration: (parseFloat(details.videoDetails.lengthSeconds) / 60).toFixed(
           2,
         ),

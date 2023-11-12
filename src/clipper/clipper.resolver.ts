@@ -14,6 +14,14 @@ export class ClipperResolver {
   @Query(() => String)
   async CreateClip(@Args('CreateClipDTO') createClipDto: CreateClipDTO) {
     try {
+      const videoDetails = await this.youtubeService.getVideoDetails(
+        createClipDto.videoId,
+      );
+
+      if (videoDetails.durationInt > 600) {
+        throw new BadRequestException('Video is longer than 10 minutes!');
+      }
+
       const video = await this.youtubeService.downloadVideo(
         createClipDto.videoId,
       );

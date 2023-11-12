@@ -12,4 +12,6 @@ export class IVideoDetails {
   author: string;
   @Field()
   duration: string;
+  @Field()
+  durationInt: number;
 }

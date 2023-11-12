@@ -8,6 +8,7 @@ type IVideoDetails {
   totalViews: String!
   author: String!
   duration: String!
+  durationInt: Float!
 }
 
 type Query {
